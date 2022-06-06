@@ -1,0 +1,44 @@
+{
+  "family":"ecs-getting-started-admin-panel",
+  "networkMode":"awsvpc",
+  "containerDefinitions":[
+    {
+      "name":"ecs-getting-started-admin-panel",
+      "image":"291867443967.dkr.ecr.ap-northeast-1.amazonaws.com/ecs-getting-started-admin-panel:latest",
+      "portMappings":[
+        {
+          "containerPort":5000,
+          "hostPort":5000,
+          "protocol":"tcp"
+        }
+      ],
+      "environment":[
+        {
+          "name":"NODE_ENV",
+          "value":"production"
+        },
+        {
+          "name":"PORT",
+          "value":"5000"
+        }
+      ],
+      "essential":true,
+      "logConfiguration":{
+        "logDriver":"awslogs",
+        "options":{
+          "awslogs-group":"/ecs/aws-ecs-getting-started",
+          "awslogs-region":"ap-northeast-1",
+          "awslogs-stream-prefix":"awslogs-admin-panel"
+        }
+      },
+      "entryPoint":[],
+      "command":[]
+    }
+  ],
+  "requiresCompatibilities":[
+    "FARGATE"
+  ],
+  "cpu":"256",
+  "memory":"512",
+  "executionRoleArn": "arn:aws:iam::291867443967:role/ecsTaskExecutionRole"
+}

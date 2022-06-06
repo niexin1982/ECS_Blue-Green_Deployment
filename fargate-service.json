@@ -1,0 +1,30 @@
+{
+  "cluster":"fargate-cluster",
+  "serviceName":"admin-panel-service",
+  "taskDefinition":"ecs-admin-test:1",
+  "loadBalancers":[
+    {
+      "targetGroupArn":"arn:aws:elasticloadbalancing:ap-northeast-1:291867443967:targetgroup/ads-targets-admin-panel/1238eee13dc023ae",
+      "containerName":"labo-terraform-admin",
+      "containerPort":5000
+    }
+  ],
+  "launchType":"FARGATE",
+  "schedulingStrategy":"REPLICA",
+  "deploymentController":{
+    "type":"CODE_DEPLOY"
+  },
+  "networkConfiguration":{
+    "awsvpcConfiguration":{
+      "assignPublicIp":"ENABLED",
+      "securityGroups":[
+        "sg-004ce75e6a1213ac8"
+      ],
+      "subnets":[
+        "subnet-0ed3c59003ba7bb62",
+        "subnet-0a3117430bc105484"
+      ]
+    }
+  },
+  "desiredCount":1
+}
